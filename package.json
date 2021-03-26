@@ -1,0 +1,24 @@
+{
+  "name": "lshud-shared",
+  "productName": "lshud-shared",
+  "version": "1.0.0",
+  "description": "Shared resources for linux-system-hud",
+  "main": "",
+  "scripts": {
+    "start": ""
+  },
+  "repository": "https://github.com/phil-giambra/lshud-shared",
+  "keywords": [
+    "linux-system-hud",
+    "xorg",
+    "desktop",
+    "xserver",
+    "system",
+    "utility"
+  ],
+  "bin": {},
+  "author": "Phil Giambra",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
