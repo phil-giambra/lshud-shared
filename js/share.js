@@ -12,10 +12,10 @@ SF.generateUUIDv4 = function() {
 SF.move_form_html =`
 <form class="nodrag" name="move_resize_form" >
     <button type="button" name="close">Close</button><br>
-    width: <input class="resize_inputs" type="number" name="width" value="">
-    height: <input class="resize_inputs" type="number" name="height" value="">
-    X: <input class="resize_inputs" type="number" name="x" value="">
-    Y: <input class="resize_inputs" type="number" name="y" value="">
+    width: <input class="resize_inputs" type="number" name="width" value=""><br>
+    height: <input class="resize_inputs" type="number" name="height" value=""><br>
+    X: <input class="resize_inputs" step="1" type="number" name="x" value=""><br>
+    Y: <input class="resize_inputs" step="1" type="number" name="y" value=""><br>
     <button type="button" name="save">Save</button>
     <button type="button" name="reset">Reset</button>
 </form>
@@ -53,20 +53,30 @@ if (document.getElementById("resize_move_button")) {
     SF.move_resize_control.innerHTML = SF.move_form_html
     SF.handleMoveResize = function(){
         console.log("window_move_resize");
-        lsh.send("hud_window",{
-            type:"window_move_resize",
-            hudid: hudid,
-            data:{
+        let valid = true
+        let bdata = {
             x:parseInt(document.move_resize_form.x.value) ,
             y:parseInt(document.move_resize_form.y.value) ,
             width:parseInt(document.move_resize_form.width.value) ,
             height:parseInt(document.move_resize_form.height.value)
-            }
+        }
+        console.log(bdata);
+        for (let i in bdata) {
+            if( String(bdata[i]) == 'NaN' ){ valid = false }
+        }
+        if (valid === false) {
+            console.log("resize input error");
+            bdata = null
+        }
+        lsh.send("hud_window",{
+            type:"window_move_resize",
+            hudid: hudid,
+            data:bdata
         })
     }
 
     fromMain.position_size_update = function(data){
-        console.log("position_size_update",data);
+        //console.log("position_size_update",data);
         document.move_resize_form.width.value = data.bounds.width
         document.move_resize_form.height.value =  data.bounds.height
         document.move_resize_form.x.value =  data.bounds.x

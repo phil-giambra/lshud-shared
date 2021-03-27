@@ -36,7 +36,7 @@
     overflow: hidden; background:green; z-index: 100; display:none;
     -webkit-app-region: drag;
 }
-#move_resize_control input[type="number"] { width:95%;}
+#move_resize_control input[type="number"] { max-width:95%;}
 #move_resize_control .controls {
     display: inline-block; -webkit-app-region: no-drag
 }
