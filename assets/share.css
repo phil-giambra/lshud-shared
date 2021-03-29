@@ -46,7 +46,7 @@
 
 .switch {
 	position: relative;
-	display: block;
+	display: inline-block;
 	vertical-align: top;
 	width: 70px;
 	height: 20px;

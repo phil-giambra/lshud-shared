@@ -20,6 +20,13 @@ SF.move_form_html =`
     <button type="button" name="reset">Reset</button>
 </form>
 `
+SF.switch_box_html =`
+<label class="switch">
+    <input id="replace_id" class="switch-input replace_class" type="checkbox" replace_checked/>
+    <span class="switch-label" data-on="On" data-off="Off"></span>
+    <span class="switch-handle"></span>
+</label>
+`
 
 
 if (document.getElementById("top_panel")) {
