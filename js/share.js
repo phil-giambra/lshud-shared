@@ -118,3 +118,41 @@ if (document.getElementById("resize_move_button")) {
     //
 
 }
+
+
+// this function can be used to apply changes to your hud config
+// this can be added as an event listener to input elemnets
+// the id of the input should follow the form hudid_key_name
+// (eg. lshud-volume_active or myhudid_is_hidden)
+// read this function as well as  handleHudSettingChange in the main.js file
+// of linux-system-hud to see which changes are handled and how they are applied
+SF.handleHudSettingChange = function(event) {
+    let input_id
+    if (typeof(event) === "string") { input_id = event }
+    else { input_id = event.target.id  }
+    console.log("handleHudSettingChange", input_id );
+    let parts = input_id.split("_")
+    let hid = parts.shift()
+    let value
+    let itype = SF.BYID(input_id).type
+    if (itype === "checkbox") {
+        value = SF.BYID(input_id).checked
+    }
+    else if (itype === "number") {
+        value = parseInt(SF.BYID(input_id).value)
+        if (String(value) === "NaN") {
+            console.log("handleHudSettingChange --- invalid number input" );
+            return;
+        }
+    }
+    else {
+        value = SF.BYID(input_id).value
+    }
+
+    let sets = {
+        hudid:hid,
+        key:parts.join("_"),
+        value: value
+    }
+    lsh.send("hud_window",{ type:"setting_change", hudid: hudid,  change:sets })
+}
