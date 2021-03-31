@@ -18,8 +18,8 @@
     overflow: visible; z-index: 15;
 }
 #resize_move_button {
-    position: absolute; top: 2px; left:5px; height:25px; width: 25px;
-    -webkit-app-region: no-drag;
+    position: absolute; top: 5px; left:5px; height:20px; width: 20px;
+    -webkit-app-region: no-drag; 
 }
 
 .window_btns_cont {
